@@ -1,5 +1,6 @@
 package com.yeongho.demo.domain.movies;
 
+import com.yeongho.demo.domain.schedules.Schedules;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

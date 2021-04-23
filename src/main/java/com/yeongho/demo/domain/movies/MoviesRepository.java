@@ -9,6 +9,7 @@ public interface MoviesRepository extends JpaRepository<Movies, Integer> {
 
     //@Query(value = "select * from Account where name = ?1", nativeQuery = true)
     //List<Account> findByusernamesQueryNative(String name);
-    @Query("SELECT m FROM Movies m ORDER BY m.movieId ASC")
-    List<Movies> findAllAsc();
+    @Query("SELECT m FROM Movies m")
+    List<Movies> findAllMovies();
+
 }

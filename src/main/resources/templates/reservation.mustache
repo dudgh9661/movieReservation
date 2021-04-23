@@ -1,0 +1,24 @@
+<html>
+<body>
+<p>상영관 : {{theaterId}}관</p>
+<p>영화 제목 : {{name}}</p>
+<p>상영 시간 : {{time}}</p>
+예약된 불가 좌석 :
+{{#reserved}}
+    <tr>{{reservedSeat}}</tr>
+{{/reserved}}
+{{^reserved}}
+    예약된 좌석이 없습니다.<br>
+{{/reserved}}
+<br>
+관람 인원 <span>
+    <select required>
+        {{{selectNumber}}}
+    </select>
+    </span>
+좌석 선택 <<여기를 셀렉터로 해야되나?>>
+<br>
+<a href="/" role="button">이전으로</a>
+<a href="/reservation-check" role="button">다음 단계</a>
+</body>
+</html>
