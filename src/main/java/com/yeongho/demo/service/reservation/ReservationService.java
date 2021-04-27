@@ -1,6 +1,8 @@
 package com.yeongho.demo.service.reservation;
 
+import com.yeongho.demo.domain.customers.CustomersRepository;
 import com.yeongho.demo.domain.seatInfo.SeatInfoRepository;
+import com.yeongho.demo.web.Dto.CustomerDto;
 import com.yeongho.demo.web.Dto.MoviesListResponseDto;
 import com.yeongho.demo.web.Dto.ReservedSeatDto;
 import lombok.RequiredArgsConstructor;
@@ -15,17 +17,11 @@ import java.util.stream.Collectors;
 @Service
 public class ReservationService {
 
-    private SeatInfoRepository seatInfoRepository;
+    private final CustomersRepository customersRepository;
 
-//    moviesRepository.findAllMovies().stream()
-//                .map(MoviesListResponseDto::new)
-//                .collect(Collectors.toList());
+    @Transactional
+    public int save(CustomerDto customerDto) {
+        return customersRepository.save(customerDto.toEntity()).getCustomerId();
+    }
 
-//    @Transactional(readOnly = true)
-//    public List<ReservedSeatDto> findByReservedSeat(int theaterId, String time) {
-//        System.out.println(" HHHHHHEre!!! " + theaterId + time);
-//        return seatInfoRepository.findByReservedSeat(theaterId, time).stream()
-//                .map(ReservedSeatDto::new)
-//                .collect(Collectors.toList())
-//    }
 }

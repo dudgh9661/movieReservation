@@ -1,20 +1,19 @@
-<html>
-<body>
-영화상영표<br><br>
-</body>
+{{>layout/header}}
+
+<h2>영화상영표</h2><br>
 <tbody id="tbody">
 {{#moviesInfo}}
     <tr>
-        <td>{{theaterId}}관</td>
-        <td>{{name}}</td>
-        <td>{{time}}</td>
-        <td>총 좌석 : {{totalSeatNumber}}</td>
-        <td>잔여좌석 : {{remainSeat}}</td>
+        <td>[{{theaterId}}관]</td>
+        <td>[상영작 : {{name}}]</td>
+        <td>[시간 : {{time}}]</td>
+        <td>[총 좌석(잔여좌석) : {{totalSeatNumber}}({{remainSeat}})]</td>
         <a href="/reservation?theaterId={{theaterId}}&name={{name}}&time={{time}}" role="button">예매하기</a>
         <!--예매하기를 누르면 상영관번호, 영화명,시간을 던져줌-->
-
         <br>
     </tr>
 {{/moviesInfo}}
 </tbody>
-</html>
+
+<a href="/reservation-check">예약 확인하기</a>
+{{>layout/footer}}

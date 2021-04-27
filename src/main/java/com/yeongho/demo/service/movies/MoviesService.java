@@ -3,6 +3,8 @@ package com.yeongho.demo.service.movies;
 import com.yeongho.demo.domain.movies.MoviesRepository;
 import com.yeongho.demo.web.Dto.MoviesInfoResponseDto;
 import com.yeongho.demo.web.Dto.MoviesListResponseDto;
+import com.yeongho.demo.web.Dto.ReservationCompleteDto;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,4 +27,5 @@ public class MoviesService {
     public MoviesInfoResponseDto findMovieInfo(int theaterId, String name, String time, int totalSeatNumber, int remainSeat) {
         return new MoviesInfoResponseDto(theaterId, name, time, totalSeatNumber, remainSeat);
     }
+
 }

@@ -1,5 +1,25 @@
-<html>
-<body>
-예매 확인 페이지<br><br>
-</body>
-</html>
+{{>layout/header}}
+
+예매 내역 최종 확인 <br><br>
+상영관 : {{confirm.theaterId}}<br>
+상영작 : {{confirm.name}}<br>
+상영 시간 : {{confirm.time}}<br>
+관람 인원 : {{confirm.customerNumber}}<br>
+선택 좌석 : {{confirm.seatNumber}}<br>
+총 가격 : {{confirm.price}}
+
+
+예매
+<form method="POST" action="/reservation-complete">
+    <input type="hidden" id="theaterId" name="theaterId" value={{confirm.theaterId}}>
+    <input type="hidden" id="name" name="name" value="{{confirm.name}}">
+    <input type="hidden" id="time" name="time" value={{confirm.time}}>
+    <input type="hidden" id="customerNumber" name="customerNumber" value={{confirm.customerNumber}}>
+    <input type="hidden" id="seatNumber" name="seatNumber" value="{{confirm.seatNumber}}">
+    <input type="hidden" id="price" name="price" value={{confirm.price}}>
+    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="휴대폰번호를 입력하세요">
+    <a href="/">
+    <input type="submit" value="예매하기">
+    </a>
+</form>
+{{>layout/footer}}

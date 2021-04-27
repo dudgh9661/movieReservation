@@ -1,24 +1,74 @@
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        var selectedSeat = ""
+        console.log("HI");
+        var customerNumber = 1;
+        var cnt = 0;
+        $(function() {
+            $("table tr td").click(function(){
+                var isOverlap = false;
+                var selectSeat = $(this).text();
+                var reservedSeat = document.getElementById("reservedSeat").innerText;
+                customerNumber = document.getElementById("customerNumber").value;
+
+                var reservedSeatList = reservedSeat.split(" ");
+                for(var i = 0; i < reservedSeatList.length; i++) {
+                    if( reservedSeatList[i] === selectSeat ) {
+                        alert("이미 예약된 좌석입니다.");
+                        isOverlap = true;
+                    }
+                }
+                if( !isOverlap ) {
+                    cnt++;
+                    if( cnt > customerNumber ) alert("관람 인원수보다 좌석이 많습니다.")
+                    else {
+                        selectedSeat += selectSeat + " ";
+                        document.getElementById("test").innerHTML = selectedSeat;
+                        document.getElementById("seatNumber").value = selectedSeat;
+                        alert(selectSeat + " 좌석이 선택되었습니다.");
+                    }
+                }
+            });
+        })
+    </script>
+</head>
 <body>
 <p>상영관 : {{theaterId}}관</p>
 <p>영화 제목 : {{name}}</p>
 <p>상영 시간 : {{time}}</p>
-예약된 불가 좌석 :
+예약 불가 좌석
+<div id="reservedSeat">
 {{#reserved}}
-    <tr>{{reservedSeat}}</tr>
+    [{{reservedSeat}}]
 {{/reserved}}
+</div>
 {{^reserved}}
     예약된 좌석이 없습니다.<br>
 {{/reserved}}
+
+
 <br>
-관람 인원 <span>
-    <select required>
+<form method="POST" action="/reservation-confirm">
+    <input type="hidden" id="theaterId" name="theaterId" value={{theaterId}}>
+    <input type="hidden" id="name" name="name" value="{{name}}">
+    <input type="hidden" id="time" name="time" value={{time}}>
+    <span> 관람 인원 : </span>
+    <span>
+    <select id="customerNumber" name="customerNumber" required>
         {{{selectNumber}}}
     </select>
     </span>
-좌석 선택 <<여기를 셀렉터로 해야되나?>>
-<br>
-<a href="/" role="button">이전으로</a>
-<a href="/reservation-check" role="button">다음 단계</a>
+    선택된 좌석 : <span id="test"></span>
+    <input type="hidden" id="seatNumber" name="seatNumber">
+    <div>
+        <TABLE border="1" cellpadding="10" bgcolor="#ffdab9">
+            {{{remainSeat}}}
+        </TABLE>
+    </div>
+    <a href="/" role="button">이전 단계</a> <input type="submit" value="다음 단계">
+</form>
 </body>
 </html>

@@ -1,0 +1,12 @@
+{{>layout/header}}
+<h2>{{phoneNumber}} 님의 매 확인 사이트</h2>
+{{#ticketCheckList}}
+    [{{theaterId}}관]
+    [상영작 : {{name}}]
+    [상영시간 : {{time}}]
+    [관람 인원 : {{customerNumber}}명]
+    [예약 좌석 : {{seat}}]
+    [총 가격 : {{totalPrice}}]<br>
+{{/ticketCheckList}}
+<a href="/">처음으로</a>
+{{>layout/footer}}
